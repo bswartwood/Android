@@ -18,7 +18,8 @@ public class CameraIntentActivity extends AppCompatActivity {
     private static final int BARCODE_DETAIL_ACTIVITY = 1;
     public static final String PHOTO_TAKEN = "photoTaken";
 
-    private ImageView photoImage;
+    private ImageView capturedImageView;
+    private Button takePhotoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,8 @@ public class CameraIntentActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        photoImage = (ImageView) findViewById(R.id.capturedImageView);
+        this.capturedImageView = (ImageView) findViewById(R.id.capturedImageView);
+        this.takePhotoButton = (Button) findViewById(R.id.takePhotoButton);
 
     }
 
@@ -49,15 +51,14 @@ public class CameraIntentActivity extends AppCompatActivity {
         if (requestCode == BARCODE_DETAIL_ACTIVITY &&
                 resultCode == RESULT_OK || resultCode == RESULT_CANCELED) {
             resetButtonTextAndClickListener();
-            this.photoImage.setImageResource(android.R.color.transparent);
+            this.capturedImageView.setImageResource(android.R.color.transparent);
         }
     }
 
     private void resetButtonTextAndClickListener() {
         // Reset Button to launch image caputer
-        final Button takePhoto = (Button) findViewById(R.id.takePhotoButton);
-        takePhoto.setText("Take Photo");
-        takePhoto.setOnClickListener(new View.OnClickListener() {
+        this.takePhotoButton.setText("Take Photo");
+        this.takePhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePhoto(v);
@@ -73,18 +74,18 @@ public class CameraIntentActivity extends AppCompatActivity {
         final Bitmap photoCaputredBitmap = (Bitmap) extras.get("data");
 
         // Set the image view with the bitmap
-        photoImage.setImageBitmap(photoCaputredBitmap);
+        this.capturedImageView.setImageBitmap(photoCaputredBitmap);
     }
 
     private void setButtonToLaunchBarcodeDetail(Intent data) {
         // Change the title of the button
-        Button takePhoto = (Button) findViewById(R.id.takePhotoButton);
-        takePhoto.setText("Next Screen");
+        this.takePhotoButton.setText("Next Screen");
 
         // Get the image bitmap to pass
         final Bitmap photoCaputredBitmap = (Bitmap) data.getExtras().get("data");
+        
         // Set the button event to launch BarcodeDetail intent
-        takePhoto.setOnClickListener(new View.OnClickListener() {
+        this.takePhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent("com.bds.cameraintenttutorial.BarcodeDetail");

@@ -44,15 +44,6 @@ public class CameraIntentActivity extends AppCompatActivity {
         //Toast.makeText(this, "Photo Taken", Toast.LENGTH_SHORT).show();
         Intent cameraAppIntent = new Intent();
         cameraAppIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-//        File file = null;
-//        try {
-//            file = new File(Environment.getExternalStorageDirectory(), "test" + timeStamp + ".jpg");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        cameraAppIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
         startActivityForResult(cameraAppIntent, ACTIVITY_START_CAMERA_APP);
     }
 

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Camera Intent Tutorial</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_barcode_detail">BarcodeDetail</string>
 </resources>

@@ -83,7 +83,7 @@ public class CameraIntentActivity extends AppCompatActivity {
 
         // Get the image bitmap to pass
         final Bitmap photoCaputredBitmap = (Bitmap) data.getExtras().get("data");
-        
+
         // Set the button event to launch BarcodeDetail intent
         this.takePhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override

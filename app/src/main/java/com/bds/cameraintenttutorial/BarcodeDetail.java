@@ -1,6 +1,7 @@
 package com.bds.cameraintenttutorial;
 
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class BarcodeDetail extends AppCompatActivity {
+    private ImageView barcodeImageView;
+    private Button barcodeDoneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +23,15 @@ public class BarcodeDetail extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.barcodeImageView = (ImageView) findViewById(R.id.barcodeImageView);
+        this.barcodeDoneButton = (Button) findViewById(R.id.barcodeDoneButton);
+
         setImageViewPhoto(getIntent().getParcelableExtra(CameraIntentActivity.PHOTO_TAKEN));
         setButtonOnClickListener();
     }
 
     private void setButtonOnClickListener() {
-        Button button = (Button) findViewById(R.id.barcodeDoneButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        this.barcodeDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
@@ -36,9 +41,8 @@ public class BarcodeDetail extends AppCompatActivity {
     }
 
     private void setImageViewPhoto(Parcelable parcelablePhoto) {
-        ImageView imageView = (ImageView) findViewById(R.id.barcodeImageView);
         Bitmap photo = (Bitmap) parcelablePhoto;
-        imageView.setImageBitmap(photo);
+        this.barcodeImageView.setImageBitmap(photo);
     }
 
     @Override
